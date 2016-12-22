@@ -14,4 +14,4 @@ spring:
       server: 
         git: 
           uri: https://github.com/qintianjie/cloud-sample-v2
-          searchPaths: config-repo/configcenter
+          searchPaths: config-repo/base
