@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * http://localhost:8672/cloud-sample/default 
+ * http://localhost:8672/cloud-sample-v2/default 
  * @author qtj
  *
  */
