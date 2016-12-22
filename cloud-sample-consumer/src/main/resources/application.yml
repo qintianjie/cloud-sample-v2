@@ -7,6 +7,9 @@ spring:
   cloud: 
     config:  
       uri: http://localhost:8762
+    loadbalancer: 
+      retry: 
+        enabled: true
     
 eureka:
   instance: 
@@ -35,3 +38,7 @@ colorcc-sample-consumer-ribbon:
     MaxAutoRetries: 3
     MaxAutoRetriesNextServer: 3
     OkToRetryOnAllOperations: true
+    ConnectTimeout: 250
+    ReadTimeout: 1000
+    
+    
