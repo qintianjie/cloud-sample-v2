@@ -1,4 +1,4 @@
-package com.qtj.cloud.sample.register.center.config;
+package com.qtj.cloud.sample.zuul.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,3 +32,4 @@ public class BizConsumerRibbonConfiguration {
 		return new RetryRule();
 	}
 }
+

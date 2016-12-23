@@ -1,0 +1,39 @@
+server: 
+  port: ${PORT:8763}
+  
+spring:
+  application:
+    name: cloud-sample-gateway
+    
+eureka:
+  instance: cloud-sample-gateway
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/  
+      
+cloud-sample-gateway: 
+  ribbon:
+#    eureka:
+#      enabled: false
+#    listOfServers: localhost:8081,localhost:8082
+    ServerListRefreshInterval: 1000
+    MaxAutoRetries: 1
+    MaxAutoRetriesNextServer: 1
+    OkToRetryOnAllOperations: true
+    
+    
+# http://localhost:8763/hello/v2/hr/cb/name --> http://localhost:8090/v2/hr/cb/name
+# 即：本机的 /hello/xxxx 转到 cloud-sample-consumer 对应的 /xxx 方法访问
+# 对外只暴露 zuul 提供的接口即可
+zuul: 
+  stripPrefix: true     # 如果为false, 则前缀保留跳转
+  ignoredServices: '*'
+  routes:
+    cloud-sample-consumer: /hello/**   # http://localhost:8763/hello/v2/hr/cb/name  --> http://localhost:8763/v2/hr/cb/name
+    serviceId: cloud-sample-consumer # 如果没有 serviceId, 则 /hello/xxx --> /xxx ,即对本机访问
+
+  
+
+      
+
+    

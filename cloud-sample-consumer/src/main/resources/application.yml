@@ -10,23 +10,6 @@ spring:
     loadbalancer: 
       retry: 
         enabled: true
-    
-eureka:
-  instance: 
-    instanceId:  ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 2
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5
-      
-      
-provider: 
-  name: cloud-sample-provider
 
 # ribbon 请求 provider 对应的  spring.applicaiton.name ，供  LoadBalancer 时从 Eureka 查对应的服务用
 colorcc-sample-consumer-ribbon: 
@@ -41,4 +24,18 @@ colorcc-sample-consumer-ribbon:
     ConnectTimeout: 250
     ReadTimeout: 1000
     
+provider: 
+  name: cloud-sample-provider
     
+eureka:
+  instance: 
+    instanceId:  ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
