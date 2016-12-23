@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.qtj.cloud.sample.register.center.resource.service.HelloResourceService;
+
 @RestController
 @RequestMapping("/v2/hr")
 public class HelloResourceV2 {
@@ -24,10 +26,21 @@ public class HelloResourceV2 {
 	@Qualifier("restTemplateLB")
 	RestTemplate restTemplate;
 	
+	@Autowired
+	HelloResourceService helloResourceService;
+	
 	@GetMapping("/name")
 	public String hello(@RequestParam(value="name", required=false, defaultValue="") String name) {
 		String reqUrl = "http://" + this.getProviderName() + "/hello/name?name={name}";
 		String response = restTemplate.getForObject(reqUrl, String.class, name);
+		return response;
+	}
+	
+	@GetMapping("/cb/name")
+	public String helloCircuitBreaker(@RequestParam(value="name", required=false, defaultValue="") String name) {
+		String reqUrl = "http://" + this.getProviderName() + "/hello/name?name={name}";
+		String nameByCircuitB = helloResourceService.helloByCircuitB(name);
+		String response = restTemplate.getForObject(reqUrl, String.class, nameByCircuitB);
 		return response;
 	}
 }
