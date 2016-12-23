@@ -10,6 +10,25 @@ spring:
     loadbalancer: 
       retry: 
         enabled: true
+    zookeeper: 
+      connectString: 192.168.142.128:2181
+    stream: 
+      kafka: 
+        binder: 
+          zk-nodes: 192.168.142.128
+          brokers: 192.168.142.128
+  zipkin:
+    base-url: http://localhost:8764/
+  sleuth:
+    stream:
+      enabled: false
+    sampler:
+      percentage: 0.5
+      
+zipkin:
+  collector: 
+    kafka: 
+      zookeeper: 192.168.142.128:2181
 
 # ribbon 请求 provider 对应的  spring.applicaiton.name ，供  LoadBalancer 时从 Eureka 查对应的服务用
 colorcc-sample-consumer-ribbon: 
