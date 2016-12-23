@@ -34,9 +34,9 @@ public class HelloResourceServiceImpl implements HelloResourceService {
 			throw new RuntimeException("Value less 6");
 		}
 	}
-
-	public String fallback() {
-		return "Value less 7.";
+	
+	public String fallback(String name) {
+		return "Value less 7." + name;
 	}
 
 }
